@@ -1,0 +1,29 @@
+{
+   "name": "nj-no-gain",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "3.3.3333",
+      "nodemon": "^2.0.7"
+   },
+   "dependencies": {
+      "bcrypt": "^5.0.0",
+      "body-parser": "^1.19.0",
+      "class-validator": "^0.13.1",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "save": "^2.4.0",
+      "typeorm": "0.2.26"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "startNodemon": "nodemon src/index.ts",
+      "make": "ts-node ./node_modules/typeorm/cli.js migration:generate --name njnogain",
+      "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run"
+   }
+}
