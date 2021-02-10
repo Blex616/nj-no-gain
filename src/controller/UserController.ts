@@ -61,7 +61,7 @@ export class UserController {
     }
 
     async all(request: Request, response: Response, next: NextFunction) {
-        return await this.userRepository.find()
+        return await this.userRepository.find({ relations: ['headquarter'] })
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
@@ -75,6 +75,11 @@ export class UserController {
                 response.status(400);
                 return { "message_error": "El usuario ya se encuentra registrado en la aplicación" }
             }
+            let validateHquarter = await this.userRepository.findAndCount({ where: { headquarter: request.body.headquarter }})
+            if (validateHquarter.length >= 300) {
+                response.status(400);
+                return { "message_error": "Se ha excedido el limite de usuarios por sede (Cantidad maxima: 300)" }
+            }
             let user = new User();
             user.identification = request.body.identification;
             user.firstName = request.body.firstName;
@@ -84,7 +89,10 @@ export class UserController {
             user.headquarter = request.body.headquarter;
             const instance = await this.userRepository.save(user);
             response.status(200);
-            return instance;
+            return {
+                "instance": instance,
+                "users": await this.userRepository.find({ relations: ['headquarter'] })
+            };
         } catch (error) {
             response.status(500);
             return { "message_error": error }

@@ -5,6 +5,7 @@ import * as bodyParser from "body-parser";
 import { Request, Response } from "express";
 import { authenticateToken, checkRole } from "./middleware/JWT";
 import { Routes } from "./routes";
+import { User } from "./entity/User";
 
 createConnection().then(async connection => {
 
@@ -33,5 +34,17 @@ createConnection().then(async connection => {
     app.listen(port, () => {
         console.log(`Servidor iniciado en el puerto ${port}`);
     });
+
+    let userRepository = connection.getRepository(User);
+    const user = new User();
+    const userValidate = await userRepository.findOne({ where: { identification: '1152' } })
+    if (!userValidate){
+        user.identification = '1152';
+        user.firstName = 'Admin';
+        user.lastName = 'Admin';
+        user.password = '2021';
+        user.role = 'ADMIN';
+        await connection.manager.save(user);
+    }
 
 }).catch(error => console.log(error));

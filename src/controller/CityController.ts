@@ -1,7 +1,6 @@
 import { getRepository } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { City } from "../entity/City";
-// import * as jwt from "jsonwebtoken";
 
 export class CityController {
 
@@ -21,7 +20,10 @@ export class CityController {
             city.name = request.body.name;
             const instance = await this.cityRepository.save(city);
             response.status(200);
-            return instance;
+            return {
+                "instance": instance,
+                "cities": await this.cityRepository.find()
+            };
         } catch (error) {
             response.status(500);
             return { "message_error": error }

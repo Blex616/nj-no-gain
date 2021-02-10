@@ -24,7 +24,7 @@ export const Routes = [
         route: "/api/users/hquarter/:city/:hquarter",
         controller: UserController,
         action: "usersForHquarterCity",
-        roles: []
+        roles: ["ADMIN"]
     },
     {
         method: "get",
@@ -71,7 +71,7 @@ export const Routes = [
     },
     {
         method: "get",
-        route: "/api/citys",
+        route: "/api/cities",
         controller: CityController,
         action: "all",
         roles: []
@@ -131,6 +131,13 @@ export const Routes = [
         route: "/api/headquarter/delete/:id",
         controller: HeadquartersController,
         action: "remove",
+        roles: []
+    },
+    {
+        method: "get",
+        route: "/api/headquarter/city/:city",
+        controller: HeadquartersController,
+        action: "hquartersCity",
         roles: []
     },
     

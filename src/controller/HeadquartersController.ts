@@ -1,14 +1,13 @@
 import { getRepository } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { Headquarters } from "../entity/Headquarters";
-// import * as jwt from "jsonwebtoken";
 
 export class HeadquartersController {
 
     private hquartersRepository = getRepository(Headquarters);
 
     async all(request: Request, response: Response, next: NextFunction) {
-        return await this.hquartersRepository.find()
+        return await this.hquartersRepository.find({relations : ["city"] })
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
@@ -22,7 +21,10 @@ export class HeadquartersController {
             hquarter.city = request.body.city;
             const instance = await this.hquartersRepository.save(hquarter);
             response.status(200);
-            return instance;
+            return {
+                "instance": instance,
+                "hquarters": await this.hquartersRepository.find({ relations: ["city"] })
+            };
         } catch (error) {
             response.status(500);
             return { "message_error": error }
@@ -57,6 +59,17 @@ export class HeadquartersController {
             return hquarterReturn
         } catch (error) {
             response.status(500)
+            return { "message_error": error }
+        }
+    }
+
+    async hquartersCity(request: Request, response: Response, next: NextFunction) {
+        try {
+            let hquartersCity = await this.hquartersRepository.find({ relations: ['city'], where: { city: request.params.city } })
+            response.status(200);
+            return hquartersCity || []
+        } catch (error) {
+            response.status(500);
             return { "message_error": error }
         }
     }
