@@ -9,13 +9,13 @@
 			"name": "User",
 			"item": [
 				{
-					"name": "Save User",
+					"name": "Registro de usuarios",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"identification\": \"1152707073\",\n    \"firstName\": \"Julian\",\n    \"lastName\": \"Iglesias\",\n    \"password\": \"123\",\n    \"role\": \"ADMIN\"\n}",
+							"raw": "{\n    \"identification\": \"115270\",\n    \"firstName\": \"Julian\",\n    \"lastName\": \"Iglesias\",\n    \"password\": \"123\",\n    \"role\": \"ADMIN\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -39,7 +39,7 @@
 					"response": []
 				},
 				{
-					"name": "Users For Hquarter",
+					"name": "Usuarios por sede",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -61,7 +61,7 @@
 					"response": []
 				},
 				{
-					"name": "Login ",
+					"name": "Inicio de sesion",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -91,10 +91,17 @@
 					"response": []
 				},
 				{
-					"name": "Users For Hquarter City",
+					"name": "Usuarios por ciudad y por sede (Token Required)",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpZmljYXRpb24iOiIxMTUyNzA3MDczIiwiZmlyc3ROYW1lIjoiSnVsaWFuIiwibGFzdE5hbWUiOiJJZ2xlc2lhcyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYxMjkyNDA5NH0.t5iW-SpyrH9Sfa4S26u2QuWRkBtEc-VAm6DSYdg5q2Q",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8000/api/users/hquarter/1/1",
 							"protocol": "http",
@@ -119,14 +126,15 @@
 			"name": "City",
 			"item": [
 				{
-					"name": "Save City",
+					"name": "Registro de ciudad (Token Required)",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpZmljYXRpb24iOiIxMTUyNzA3MDczIiwiZmlyc3ROYW1lIjoiSnVsaWFuIiwibGFzdE5hbWUiOiJJZ2xlc2lhcyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYxMjkyNDA5NH0.t5iW-SpyrH9Sfa4S26u2QuWRkBtEc-VAm6DSYdg5q2Q",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -160,10 +168,17 @@
 			"name": "Hquarter",
 			"item": [
 				{
-					"name": "Save Hquarter",
+					"name": "Registro de sede (Token Required)",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpZmljYXRpb24iOiIxMTUyNzA3MDczIiwiZmlyc3ROYW1lIjoiSnVsaWFuIiwibGFzdE5hbWUiOiJJZ2xlc2lhcyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYxMjkyNDA5NH0.t5iW-SpyrH9Sfa4S26u2QuWRkBtEc-VAm6DSYdg5q2Q",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"No pain no game\",\n    \"city\": \"1\"\n}",

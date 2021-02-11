@@ -1,7 +1,11 @@
-# Awesome Project Build with TypeORM
+# Pasos para desplegar
 
-Steps to run this project:
+1. Tener Docker Installado y Docker Compose.
+- https://docs.docker.com/engine/install/ubuntu/
+- https://docs.docker.com/compose/install/
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+2. docker-compose up -d --build
+
+3. Se debe esperar hasta que finalice el build, una vez finalizado esperar de 20 a 30 segundos hasta que los contenedores se inicien correctamente
+
+4. En este punto debera ir al README.md del proyecto ag-no-pain para proceder con el despliegue.

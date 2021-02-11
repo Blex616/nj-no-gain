@@ -3,10 +3,10 @@
    "version": "0.0.1",
    "description": "No Pain No Gain",
    "devDependencies": {
-      "ts-node": "3.3.0",
       "@types/node": "^8.0.29",
-      "typescript": "3.3.3333",
-      "nodemon": "^2.0.7"
+      "nodemon": "^2.0.7",
+      "ts-node": "3.3.0",
+      "typescript": "3.7.3"
    },
    "dependencies": {
       "bcrypt": "^5.0.0",
@@ -21,7 +21,9 @@
       "typeorm": "0.2.26"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
+      "startTs": "ts-node src/index.ts",
+      "start": "node build/index.js",
+      "build": "tsc --build",
       "startNodemon": "nodemon src/index.ts",
       "make": "ts-node ./node_modules/typeorm/cli.js migration:generate --name njnogain",
       "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run"
